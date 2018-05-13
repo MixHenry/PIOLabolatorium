@@ -5,8 +5,6 @@
  */
 package javaapplication3;
 
-import java.util.Random;
-
 /**
  *
  * @author Student
@@ -21,16 +19,28 @@ public class JavaApplication3 {
         Gamemaster gamemaster = new Gamemaster(); 
         Player player = new Player();
         
-        int randomInteger = gamemaster.rollDice();
-        int randomIntegerGuess = player.guess();
+        int mode = 1; //1-comp 2-human
         
-        while(randomInteger != randomIntegerGuess)
-        {
-            System.out.println("Nie udało się. " + randomInteger + " " + randomIntegerGuess);
-            randomInteger = gamemaster.rollDice();
-            randomIntegerGuess = player.guess();
+        int randomInteger = gamemaster.rollDice();
+        int randomIntegerGuess = player.random_guess();
+        int manualIntegerGuess = player.manual_guess();
+        if(mode==1){
+            while(randomInteger != randomIntegerGuess)
+            {
+               System.out.println("Nie udało się. " + randomInteger + " " + randomIntegerGuess);
+               randomInteger = gamemaster.rollDice();
+               randomIntegerGuess = player.random_guess();
+            }
+            System.out.println("Wygrałeś " + randomInteger + " " + randomIntegerGuess);
         }
+        else if(mode==2){
+            while(randomInteger != randomIntegerGuess){
+               System.out.println("Nie udało się. " + randomInteger + " " + randomIntegerGuess);
+               randomInteger = gamemaster.rollDice();
+               randomIntegerGuess = player.manual_guess();
+            }
         System.out.println("Wygrałeś " + randomInteger + " " + randomIntegerGuess);
+        }
     }
     
 }
